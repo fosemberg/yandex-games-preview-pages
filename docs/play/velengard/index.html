@@ -34,14 +34,27 @@
   <a class="preview-bar__switch" href="../../en/play/velengard/index.html" style="padding:3px 10px">English</a>
 </div>
 <div class="play-app">
+  <!--
+    Шапка запуска. У платформы она РАЗНАЯ: на компьютере логотип, название
+    игры и кнопки в ряд, а на телефоне — три секции по 33 % ширины, и по
+    центру пилюля «Все игры» (класс play-game-header__section_center в
+    мобильном HAR). Разметка одна, раскладку разводит CSS.
+  -->
   <header class="play-game-header">
-    <a class="play-game-header__logo" href="../../index.html"><span class="catalog-header__logo-mark"></span>Яндекс Игры</a>
-    <a class="play-game-header__title" href="../../app/velengard/index.html">Хроники Веленгарда</a>
-    <span class="play-game-header__spacer"></span>
-    <span class="catalog-header__balance"><span class="catalog-header__coin"></span>0</span>
-    <button class="play-game-header__action" type="button" data-note title="Игра открыта со своего адреса. На Яндекс Играх на этом месте был бы архив, загруженный в консоль." aria-label="Об игре">ℹ</button>
-    <a class="play-game-header__action" href="https://fosemberg.github.io/fosrpg-pages/" target="_blank" rel="noopener" title="Открыть игру в новой вкладке">↗</a>
-    <button class="play-game-header__action" type="button" data-fullscreen title="На весь экран">⛶</button>
+    <div class="play-game-header__section play-game-header__section_left">
+      <span class="play-game-header__burger" aria-hidden="true"></span>
+      <a class="play-game-header__logo" href="../../index.html"><span class="catalog-header__logo-mark"></span><span class="play-game-header__logo-text">Яндекс Игры</span></a>
+      <a class="play-game-header__title" href="../../app/velengard/index.html">Хроники Веленгарда</a>
+    </div>
+    <div class="play-game-header__section play-game-header__section_center">
+      <a class="play-game-header__all-games" href="../../index.html">Все игры</a>
+    </div>
+    <div class="play-game-header__section play-game-header__section_right">
+      <span class="catalog-header__balance"><span class="catalog-header__coin"></span>0</span>
+      <button class="play-game-header__action" type="button" data-note title="Игра открыта со своего адреса. На Яндекс Играх на этом месте был бы архив, загруженный в консоль." aria-label="Об игре">i</button>
+      <a class="play-game-header__action" href="https://fosemberg.github.io/fosrpg-pages/" target="_blank" rel="noopener" title="Открыть игру в новой вкладке">↗</a>
+      <button class="play-game-header__action" type="button" data-fullscreen title="На весь экран">⛶</button>
+    </div>
   </header>
   <div class="game-root">
     <iframe id="game-frame" src="https://fosemberg.github.io/fosrpg-pages/" title="Хроники Веленгарда"
