@@ -21,7 +21,7 @@
 -->
 <link rel="stylesheet" href="../../../assets/yandex.css">
 </head>
-<body class="">
+<body class="page-game">
 <div class="background"><div class="background__gradient"></div><div class="background__image"></div></div>
 <div class="preview-bar">
   <span class="preview-bar__tag">Preview</span>
@@ -40,8 +40,8 @@
     <span class="catalog-header__burger" aria-hidden="true"></span>
     <a class="catalog-header__logo" href="../../../index.html" title="Yandex Games">
       <span class="catalog-header__logo-ya" aria-hidden="true">Я</span>
-      <span class="catalog-header__logo-pad" aria-hidden="true"><svg width="34" height="24" viewBox="0 0 34 24" aria-hidden="true"><path fill="currentColor" d="M10 4h14a9 9 0 0 1 8.9 7.6l.6 3.9a4.5 4.5 0 0 1-7.3 3.9L23.5 16.5h-13L7.8 19.4a4.5 4.5 0 0 1-7.3-3.9l.6-3.9A9 9 0 0 1 10 4Z"/><path fill="#4a2f7a" d="M7.6 8.6h2.2v2.3H12v2.2H9.8v2.3H7.6v-2.3H5.4v-2.2h2.2z"/><circle cx="24.6" cy="10.4" r="1.7" fill="#4a2f7a"/><circle cx="27.6" cy="13.6" r="1.7" fill="#4a2f7a"/></svg></span>
-      <span class="catalog-header__logo-word">Games</span>
+    <span class="catalog-header__logo-pad" aria-hidden="true"><svg width="34" height="24" viewBox="0 0 34 24" aria-hidden="true"><path fill="currentColor" d="M10 4h14a9 9 0 0 1 8.9 7.6l.6 3.9a4.5 4.5 0 0 1-7.3 3.9L23.5 16.5h-13L7.8 19.4a4.5 4.5 0 0 1-7.3-3.9l.6-3.9A9 9 0 0 1 10 4Z"/><path fill="#4a2f7a" d="M7.6 8.6h2.2v2.3H12v2.2H9.8v2.3H7.6v-2.3H5.4v-2.2h2.2z"/><circle cx="24.6" cy="10.4" r="1.7" fill="#4a2f7a"/><circle cx="27.6" cy="13.6" r="1.7" fill="#4a2f7a"/></svg></span>
+    <span class="catalog-header__logo-word">Games</span>
     </a>
     <div class="catalog-search" aria-hidden="true">
       <span class="catalog-search__submit"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M7 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm3.6-1.4L14 14"/></svg></span>
@@ -61,6 +61,20 @@
   </div>
 </header>
 <main class="middle-layer-page"><div class="middle-layer">
+  <!--
+    Шапка листа — телефонная. У платформы страница игры открывается ЛИСТОМ
+    поверх каталога: скруглённый верх, «‹ Назад» слева, логотип по центру и
+    ✕ в углу; шапки каталога с поиском на ней нет. На компьютере лист тоже
+    модальный, но там шапка каталога остаётся, поэтому этот блок показывает
+    только телефонная раскладка.
+  -->
+  <div class="sheet-head">
+    <a class="sheet-head__back" href="../../../index.html">‹ Back</a>
+    <span class="sheet-head__logo"><span class="catalog-header__logo-ya" aria-hidden="true">Я</span>
+    <span class="catalog-header__logo-pad" aria-hidden="true"><svg width="34" height="24" viewBox="0 0 34 24" aria-hidden="true"><path fill="currentColor" d="M10 4h14a9 9 0 0 1 8.9 7.6l.6 3.9a4.5 4.5 0 0 1-7.3 3.9L23.5 16.5h-13L7.8 19.4a4.5 4.5 0 0 1-7.3-3.9l.6-3.9A9 9 0 0 1 10 4Z"/><path fill="#4a2f7a" d="M7.6 8.6h2.2v2.3H12v2.2H9.8v2.3H7.6v-2.3H5.4v-2.2h2.2z"/><circle cx="24.6" cy="10.4" r="1.7" fill="#4a2f7a"/><circle cx="27.6" cy="13.6" r="1.7" fill="#4a2f7a"/></svg></span>
+    <span class="catalog-header__logo-word">Games</span></span>
+    <a class="sheet-head__close" href="../../../index.html" aria-label="Back">✕</a>
+  </div>
   <a class="middle-layer__back" href="../../../index.html">← Back</a>
 
   <section class="middle-layer__preview">
@@ -69,7 +83,7 @@
     <div class="middle-layer__info"><div class="middle-layer__card">
       <img class="middle-layer__icon" src="../../../media/fosombat/icon-512x512.png" alt="Fosombat">
       <div class="middle-layer__body">
-        <h1 class="middle-layer__title">Fosombat</h1>
+        <h1 class="middle-layer__title">Fosombat<span class="age-tag age-tag_inline age-tag_orange">12+</span></h1>
         <div class="middle-layer__short">A fighting game where your past self fights alongside you</div>
         <div class="middle-layer__ratings">
           <span class="game-quality-score"><span class="game-quality-score__value">69</span><span class="game-quality-score__text">Yandex Games rating</span></span>
@@ -84,7 +98,7 @@
 
   <div class="ml-sections">
     <div class="ml-main">
-      <section class="panel"><h2>Screenshots</h2><div class="shots"><img src="../../../media/fosombat/screens/01-fight.jpg" alt="Fosombat" loading="lazy"><img src="../../../media/fosombat/screens/02-combo.jpg" alt="Fosombat" loading="lazy"><img src="../../../media/fosombat/screens/03-select.jpg" alt="Fosombat" loading="lazy"><img src="../../../media/fosombat/screens/04-title.jpg" alt="Fosombat" loading="lazy"></div></section>
+      <section class="panel panel_shots"><h2>Screenshots</h2><div class="shots"><img src="../../../media/fosombat/screens/01-fight.jpg" alt="Fosombat" loading="lazy"><img src="../../../media/fosombat/screens/02-combo.jpg" alt="Fosombat" loading="lazy"><img src="../../../media/fosombat/screens/03-select.jpg" alt="Fosombat" loading="lazy"><img src="../../../media/fosombat/screens/04-title.jpg" alt="Fosombat" loading="lazy"></div></section>
       <section class="panel"><h2>About game</h2><p>A fighting game with one unusual mechanic: every hit you land or take charges your Echo meter. When it is full, tap it and a translucent copy of yourself appears where you stood 2.5 seconds ago. It replays everything you did since — every step, punch, kick and special — while you keep fighting. Two of you against one.</p><p>The echo is invulnerable, deals reduced damage and fades when its replay ends. Land a combo, then cast the echo so your past self repeats it while you set up the next one.</p><p>What&#39;s inside:
 • four fighters with their own stats and signature specials;
 • three arenas: Neon Shrine, Ember Pit, Frost Sanctum;
