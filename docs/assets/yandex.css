@@ -534,8 +534,10 @@ body.is-play { overflow: hidden; min-height: 0; }
 .play-game-header__section_left { gap: 10px; flex: 0 1 auto; }
 .play-game-header__section_center { display: none; }
 .play-game-header__section_right { gap: 4px; margin-left: auto; flex-shrink: 0; }
-.play-game-header__logo { display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 13px; flex-shrink: 0; }
-.play-game-header__logo .catalog-header__logo-mark { width: 18px; height: 18px; border-radius: 5px; }
+.play-game-header__logo { display: flex; align-items: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+.play-game-header__logo .catalog-header__logo-ya { width: 18px; height: 18px; font-size: 13px; }
+.play-game-header__logo .catalog-header__logo-pad svg { width: 22px; height: 15px; }
+.play-game-header__all-games-icon { display: none; }
 .play-game-header__title { min-width: 0; color: rgba(255, 255, 255, 0.85); overflow: hidden; text-overflow: ellipsis; }
 .play-game-header .catalog-header__balance { height: 24px; padding: 0 8px; font-size: 13px; background: none; }
 .play-game-header .catalog-header__coin { width: 14px; height: 14px; }
@@ -955,16 +957,29 @@ body.is-play { overflow: hidden; min-height: 0; }
                 linear-gradient(currentColor 0 0) center/70% 2px no-repeat,
                 linear-gradient(currentColor 0 0) bottom/100% 2px no-repeat;
   }
-  .play-game-header__logo-text, .play-game-header__title { display: none; }
+  /*
+   * Слева у платформы «короткий» логотип — только «Я» с геймпадом, без
+   * слова (`domain-logo__image_short` в мобильной офлайн-копии).
+   */
+  .play-game-header__title,
+  .play-game-header__logo .catalog-header__logo-word { display: none; }
+  .play-game-header__logo .catalog-header__logo-ya { width: 22px; height: 22px; font-size: 15px; }
+  .play-game-header__logo .catalog-header__logo-pad svg { width: 26px; height: 18px; }
   .play-game-header__all-games {
-    display: flex; align-items: center;
+    display: flex; align-items: center; gap: 6px;
     padding: 8px 10px; border-radius: 8px;
     background: #ffffff26; font-size: 14px; font-weight: 400;
-    max-width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
+  .play-game-header__all-games-icon { display: flex; flex-shrink: 0; }
   .play-game-header__action { padding: 0 6px; min-width: 28px; background: transparent; }
   .play-game-header__action:hover { background: rgba(255, 255, 255, 0.12); }
-  .play-game-header .catalog-header__balance { height: 26px; padding: 0 8px; font-size: 13px; }
+  /*
+   * Баланса в телефонной шапке запуска у платформы нет: у гостя ячейка
+   * `play-game-header__balance-offer` пустая, а нам нечем её заполнить —
+   * «0» занимал место у кнопок и обещал счёт, которого не существует.
+   */
+  .play-game-header .catalog-header__balance { display: none; }
 
   /* ── нижняя панель ─────────────────────────────────────────────────── */
   .tabbar {
