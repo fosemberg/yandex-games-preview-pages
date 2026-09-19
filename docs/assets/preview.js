@@ -29,6 +29,25 @@
    * запасную панель со ссылкой. Узнать причину отказа изнутри нельзя —
    * кросс-доменный iframe молчит и про сеть, и про запрет встраивания.
    */
+  /*
+   * Пояснение про адрес игры гаснет через NOTE_LINGER: оно объясняет макет, а
+   * не игру, и держать его поверх кадра всё время значит отъедать у игрока низ
+   * экрана. Вернуть — кнопка «ℹ» в шапке.
+   */
+  var NOTE_LINGER = 6000;
+  var note = document.querySelector('[data-note-text]');
+  var noteTimer = null;
+  function hideNote() {
+    if (note) note.classList.add('game-root__note_gone');
+  }
+  function showNote() {
+    if (!note) return;
+    note.classList.remove('game-root__note_gone');
+    clearTimeout(noteTimer);
+    noteTimer = setTimeout(hideNote, NOTE_LINGER);
+  }
+  if (note) noteTimer = setTimeout(hideNote, NOTE_LINGER);
+
   var frame = document.getElementById('game-frame');
   var fallback = document.querySelector('[data-frame-fallback]');
   if (frame && fallback) {
@@ -52,6 +71,11 @@
       } catch (err) {
         /* не смогли запомнить — вид всё равно переключился */
       }
+      return;
+    }
+
+    if (e.target.closest('[data-note]')) {
+      showNote();
       return;
     }
 
