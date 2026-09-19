@@ -233,7 +233,7 @@ button { font: inherit; color: inherit; }
  * 84px) с кнопкой «Мои игры» в начале. Здесь она показывает те же игры —
  * это витрина, а не история запусков, поэтому подписи у кнопки нет.
  */
-.played { display: flex; align-items: center; gap: 12px; overflow: hidden; padding-bottom: 4px; }
+.played { display: flex; align-items: center; gap: 12px; overflow: hidden; }
 .played__button {
   flex-shrink: 0; width: var(--tile-size); height: var(--tile-size);
   border-radius: 12px; background: var(--nav-item-bg-active);
@@ -253,7 +253,9 @@ button { font: inherit; color: inherit; }
 .feed { padding-bottom: 48px; }
 
 .feed-section { margin-top: var(--section-margin-top); }
-.feed-section:first-child { margin-top: 0; }
+/* Первая секция идёт сразу под лентой «Мои игры», и полные 48px там были бы
+   провалом: у платформы между ними примерно четверть этого. */
+.feed-section:first-child { margin-top: 20px; }
 .feed-section__title { margin: 0 0 var(--section-title-mb); font-weight: 500; font-size: 28px; line-height: 32px; }
 
 /*
