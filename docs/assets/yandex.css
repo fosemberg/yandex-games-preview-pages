@@ -253,6 +253,12 @@ button { font: inherit; color: inherit; }
 /* Бургер есть только в мобильной шапке платформы. */
 .catalog-header__burger { display: none; }
 
+/*
+ * Шапка листа — телефонная. На компьютере у платформы страница игры тоже
+ * модальная, но шапка каталога на ней остаётся; см. блок телефона.
+ */
+.sheet-head { display: none; }
+
 /* ── полоса «Мои игры» ──────────────────────────────────────────────── */
 
 /*
@@ -380,6 +386,12 @@ button { font: inherit; color: inherit; }
 .age-tag_green { color: var(--age-rating-green); border: 1px solid var(--age-rating-green); }
 .age-tag_orange { color: var(--age-rating-orange); border: 1px solid var(--age-rating-orange); }
 .age-tag_red { color: var(--age-rating-red); border: 1px solid var(--age-rating-red); }
+/*
+ * Метка у заголовка — телефонная (см. блок телефона): на компьютере она
+ * стоит в ряду рейтингов. Правило идёт ПОСЛЕ `.age-tag`, иначе `display`
+ * оттуда его перебивает — специфичность у них одинаковая.
+ */
+.age-tag_inline { display: none; }
 
 /* категория — .category */
 .category { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; color: var(--white-600); }
@@ -804,35 +816,110 @@ body.is-play { overflow: hidden; }
   }
 
   /* ── страница игры ─────────────────────────────────────────────────── */
-  .middle-layer { max-width: none; padding: 0 0 40px; }
-  .middle-layer__back { margin: 8px 12px; }
-  .middle-layer-page { background: none; }
-  .ml-sections { grid-template-columns: minmax(0, 1fr); }
   /*
-   * Кадр во всю ширину: `.middle-layer` на телефоне и так без боковых
-   * отступов, поэтому отрицательные поля уводили его на 10px за край
-   * экрана (документ 385 при вьюпорте 375) и страница ездила вбок.
+   * НА ТЕЛЕФОНЕ СТРАНИЦА ИГРЫ — ЛИСТ ПОВЕРХ КАТАЛОГА, и устроен он иначе,
+   * чем десктопная карточка (та у нас уже совпадает с платформой: иконка
+   * 96, заголовок, ряд рейтингов, категории с разработчиком в строку).
+   *
+   * Что на снимке настоящей страницы (375 css при ×3):
+   *
+   *   лист          во всю ширину, скруглён сверху (радиус 20), «‹ Назад»
+   *                 слева, логотип по центру, ✕ в углу; шапки каталога нет
+   *   кадра-героя   НЕТ ВОВСЕ — сразу иконка с описанием
+   *   иконка        114 × 114 слева, текст справа колонкой
+   *   заголовок     рядом с ним возрастная метка
+   *   разработчик   отдельной строкой под заголовком
+   *   категории     ПО СТРОКЕ каждая, со значком, а не через разделители
+   *   рейтинги      двумя строками под иконкой, во всю ширину
+   *   скриншоты     плитка 161, зазор 15.6 — две с хвостом в ширину экрана
    */
-  .middle-layer__preview { height: auto; border-radius: 0; margin: 0; }
-  .middle-layer__media { position: relative; aspect-ratio: 16 / 9; }
-  .middle-layer__media img { object-fit: contain; }
-  .middle-layer__scrim { background: linear-gradient(180deg, #14141400 30%, #141414cc 80%, #141414 100%); }
-  .middle-layer__info { position: static; }
+  .page-game .catalog-header { display: none; }
+  .sheet-head {
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+    margin: 6px 0 0; padding: 10px 12px;
+    border-radius: 20px 20px 0 0; background: var(--color-main-theme);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  }
+  .sheet-head__back { color: #a68cff; font-size: 17px; }
+  .sheet-head__logo { display: flex; align-items: center; font-size: 19px; font-weight: 700; }
+  .sheet-head__logo .catalog-header__logo-ya { width: 26px; height: 26px; font-size: 18px; }
+  .sheet-head__logo .catalog-header__logo-pad svg { width: 31px; height: 22px; }
+  .sheet-head__close {
+    justify-self: end; display: flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16); color: #fff; font-size: 15px;
+  }
+  .middle-layer { max-width: none; padding: 0 0 40px; }
+  /* «← Назад» в теле листа не нужен: он уже есть в его шапке. */
+  .middle-layer__back { display: none; }
   /*
-   * Карточка под кадром, а не поверх него: наверх заезжает только иконка —
-   * так эта шторка устроена у платформы (game-page__description в мобильном
-   * HAR). Отрицательный отступ на всём блоке клал название на скриншот.
+   * `minmax(0, 1fr)` обнуляет минимум ТРЕКА, но у самого элемента остаётся
+   * `min-width: auto` — он растёт под содержимое, и прокручиваемый ряд
+   * скриншотов растягивал страницу до 895px вместо 375.
+   */
+  .ml-sections { grid-template-columns: minmax(0, 1fr); }
+  .ml-main, .ml-side, .panel { min-width: 0; }
+  /*
+   * Кадра-героя у платформы на этой странице нет — только иконка. Гасить
+   * надо ИМЕННО слои кадра: сама `__preview` — обёртка, внутри которой
+   * лежит и карточка игры, и `display: none` на ней уносил заголовок,
+   * рейтинги и кнопку «Играть» вместе с картинкой.
+   */
+  .middle-layer__media,
+  .middle-layer__scrim { display: none; }
+  .middle-layer__preview,
+  .middle-layer__info { display: contents; }
+  /*
+   * Карточка — сетка: иконка слева на две строки, справа заголовок и
+   * описание, под ними рейтинги и кнопка во всю ширину. `display: contents`
+   * поднимает детей `__body` в эту сетку, чтобы не городить второй набор
+   * обёрток ради одной раскладки.
    */
   .middle-layer__card {
-    display: flex; gap: 12px; align-items: flex-start;
-    width: auto; max-width: none; padding: 0 12px; position: relative;
+    display: grid; width: auto; max-width: none; position: relative;
+    grid-template-columns: 114px minmax(0, 1fr);
+    column-gap: 21px; row-gap: 12px; align-items: start;
+    padding: 22px 19px 0;
   }
-  .middle-layer__icon { width: 72px; height: 72px; margin-top: -28px; }
-  .middle-layer__title { font-size: 22px; }
-  .middle-layer__short { font-size: 14px; }
-  .btn-play { width: 100%; }
-  .panel { padding: 16px; }
-  .shots_portrait { grid-auto-columns: minmax(0, 132px); }
+  .middle-layer__body { display: contents; }
+  .middle-layer__icon {
+    grid-column: 1; grid-row: 1 / span 2;
+    width: 114px; height: 114px; margin: 0; border-radius: 22px;
+  }
+  .middle-layer__title {
+    grid-column: 2; grid-row: 1; margin: 0;
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    font-size: 21px; line-height: 1.15;
+  }
+  .age-tag_inline { display: inline-flex; }
+  /* Короткого описания у платформы в этом блоке нет — оно в «Об игре». */
+  .middle-layer__short { display: none; }
+  /* Категории — по строке, разработчик первой строкой над ними. */
+  .middle-layer__meta {
+    grid-column: 2; grid-row: 2; margin: 0;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+  }
+  .middle-layer__separator { display: none; }
+  .middle-layer__developer { order: -1; }
+  /* Рейтинги — двумя строками во всю ширину, под иконкой. */
+  .middle-layer__ratings {
+    grid-column: 1 / -1; grid-row: 3; margin: 0;
+    padding-top: 15px;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+  }
+  .middle-layer__ratings .age-tag { display: none; }
+  .btn-play { grid-column: 1 / -1; grid-row: 4; width: 100%; height: 72px; }
+  .panel { padding: 16px 19px; }
+  /*
+   * Плитки скриншотов — ФИКСИРОВАННОЙ ширины: `minmax(0, …)` в
+   * прокручиваемом ряду сжимается до нуля, и пять плиток вставали в
+   * ширину экрана по 65px вместо двух по 161.
+   */
+  .shots { gap: 15.6px; }
+  .shots_portrait, .shots { grid-auto-columns: 161px; }
+  /* У платформы скриншоты идут сразу за кнопкой «Играть», без заголовка. */
+  .panel_shots > h2 { display: none; }
+  .panel_shots { padding-top: 4px; }
 
   /* ── шапка страницы запуска ────────────────────────────────────────── */
   .play-game-header { height: 44px; gap: 0; padding: 0 8px; }
