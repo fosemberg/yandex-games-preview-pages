@@ -171,10 +171,25 @@ button { font: inherit; color: inherit; }
 .catalog-header__end { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
 
 .catalog-header__logo { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; flex-shrink: 0; }
-.catalog-header__logo-mark {
-  width: 30px; height: 30px; border-radius: 9px; flex-shrink: 0;
-  background: linear-gradient(135deg, #ff5c5c, #ffb020 45%, #5641ff);
+/*
+ * Логотип платформы — связка из трёх частей: красный кружок «Я», жёлтая
+ * плитка с геймпадом и слово «Игры». Рисуем сами; картинку платформы
+ * (`single-logo/games/*.png`) копировать нельзя, а узнаётся связка по
+ * порядку и форме.
+ */
+.catalog-header__logo-ya {
+  width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+  background: #fc3f1d; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 500; line-height: 1;
 }
+/* Силуэт налезает на кружок «Я» — отрицательный отступ, как у платформы. */
+.catalog-header__logo-pad {
+  flex-shrink: 0; color: #ffd23f; margin-inline-start: -8px;
+  display: flex; align-items: center;
+}
+.catalog-header__logo-pad svg { display: block; }
+.catalog-header__logo-word { white-space: nowrap; }
 
 /* Поле поиска — пилюля 260×40, фон #3d3d3d, кнопка справа #4d4d4d. */
 .catalog-search {
@@ -210,12 +225,22 @@ button { font: inherit; color: inherit; }
   background: rgba(255, 255, 255, 0.08);
   color: #ebebeb; font-size: 14px; font-weight: 500; font-feature-settings: 'tnum';
 }
-.catalog-header__coin { width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(160deg, #ffd86a, #e09d00); flex-shrink: 0; }
+.catalog-header__coin {
+  width: 20px; height: 20px; flex-shrink: 0; color: #ffd23f;
+  display: flex; align-items: center; justify-content: center;
+}
 .catalog-header__plus {
   width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
   background: #ffd23f; color: #1b1b23;
   display: flex; align-items: center; justify-content: center;
   font-size: 17px; font-weight: 500; line-height: 1;
+}
+/* Колокольчик с красной точкой есть в телефонной шапке платформы; в
+   десктопной его место занимает другой набор кнопок, поэтому здесь скрыт. */
+.catalog-header__bell { display: none; position: relative; }
+.catalog-header__dot {
+  position: absolute; top: 4px; inset-inline-end: 4px;
+  width: 8px; height: 8px; border-radius: 50%; background: #fc3f1d;
 }
 .catalog-header__icon {
   width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
@@ -245,8 +270,19 @@ button { font: inherit; color: inherit; }
   display: flex; align-items: center; justify-content: center; font-size: 12px;
 }
 .played__list { display: flex; gap: 12px; min-width: 0; }
-.played__card { flex-shrink: 0; width: var(--tile-size); height: var(--tile-size); border-radius: 12px; overflow: hidden; background: #2a2a2e; }
-.played__card img { width: 100%; height: 100%; object-fit: cover; }
+/*
+ * `display: contents` возвращает кнопку «Мои игры» в сам ряд ленты: на
+ * компьютере она стоит плиткой слева от игр, а на телефоне уезжает в
+ * отдельную строку заголовка вместе с «Изменить».
+ */
+.played__head { display: contents; }
+.played__edit, .played__name { display: none; }
+.played__card { flex-shrink: 0; width: var(--tile-size); }
+.played__tile {
+  display: block; width: var(--tile-size); height: var(--tile-size);
+  border-radius: 12px; overflow: hidden; background: #2a2a2e;
+}
+.played__tile img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ── лента каталога ─────────────────────────────────────────────────── */
 
@@ -533,14 +569,28 @@ body.is-play { overflow: hidden; }
    *   шапка             95px: бургер + логотип и баланс с аватаром в первой
    *                     строке, поиск во второй (header-wrapper__headerBase)
    */
-  .shell { padding: 0 10px; }
+  .shell { padding: 0 12px; }
+
+  /*
+   * Фон телефона — ЧИСТАЯ ВЕРТИКАЛЬ. На компьютере у платформы поверх
+   * градиента лежат два радиальных пятна, и на узком экране их край
+   * читался поперёк страницы видимым швом. Стопы сняты со снимка
+   * настоящей страницы (375 css, замер у левого края): 0 → (87,80,110),
+   * 25 % → (72,67,89), 54 % → (54,52,61), дальше в тёмное.
+   */
+  .background__image { display: none; }
+  .background__gradient {
+    background: linear-gradient(180deg,
+      #57506e 0%, #534c68 12%, #48435a 25%, #423f4f 39%,
+      #36343d 54%, #333239 62%, #2c2b30 100%);
+  }
 
   /*
    * Мобильная раскладка платформы: панели категорий нет (её открывает
    * бургер), ленты «Мои игры» на главной тоже нет — сразу сетка плиток.
    */
   .page__main { display: block; padding: 0; }
-  .left-panel, .played, .catalog-header__center { display: none; }
+  .left-panel, .catalog-header__center { display: none; }
 
   /* ── шапка ─────────────────────────────────────────────────────────── */
   /*
@@ -548,7 +598,7 @@ body.is-play { overflow: hidden; }
    * логотип, баланс и аватар сверху, поиск во всю ширину под ними.
    */
   .catalog-header {
-    position: static; min-height: 0; padding: 10px 10px 0; background: none;
+    position: static; min-height: 0; padding: 20px 12px 0; background: none;
     display: grid; align-items: center;
     grid-template-columns: auto auto 1fr auto;
     grid-template-areas: 'burger logo . end' 'search search search search';
@@ -570,25 +620,111 @@ body.is-play { overflow: hidden; }
                 linear-gradient(currentColor 0 0) center/100% 2px no-repeat,
                 linear-gradient(currentColor 0 0) bottom/100% 2px no-repeat;
   }
-  .catalog-header__logo { font-size: 20px; gap: 8px; }
-  .catalog-header__logo-mark { width: 26px; height: 26px; }
-  .catalog-header__avatar { width: 30px; height: 30px; margin-left: 10px; }
-  .catalog-header__icon { display: none; }
-  .catalog-header__balance { height: 30px; padding: 0 4px 0 8px; margin-left: auto; }
-  .catalog-header__coin { width: 16px; height: 16px; }
-  .catalog-header__plus { width: 20px; height: 20px; font-size: 14px; }
-
-  .catalog-search {
-    width: auto; max-width: none; height: 44px; margin: 12px 0 16px;
-    padding: 0 44px 0 16px; border-radius: 12px;
-    background: rgba(255, 255, 255, 0.1); color: var(--white-600); font-size: 15px;
+  .catalog-header__logo { font-size: 23px; gap: 6px; font-weight: 700; }
+  .catalog-header__logo-ya { width: 30px; height: 30px; font-size: 21px; }
+  .catalog-header__logo-pad svg { width: 36px; height: 25px; }
+  /*
+   * Аватар у платформы в цветном кольце: сама картинка на 2px меньше рамки,
+   * зазор между ними — фон шапки, поэтому кольцо читается кольцом, а не
+   * обводкой.
+   */
+  .catalog-header__avatar {
+    width: 34px; height: 34px; margin-left: 8px;
+    background: linear-gradient(140deg, #ff9f2e, #fc3f1d 45%, #b45cff);
+    padding: 1.5px; box-sizing: border-box;
   }
-  .catalog-search__submit { width: 44px; height: 44px; background: none; }
+  .catalog-header__avatar::after {
+    content: ''; display: block; width: 100%; height: 100%; border-radius: 50%;
+    background: linear-gradient(140deg, #9f8ae0, #4a4a62);
+  }
+  .catalog-header__icon { display: none; }
+  /* Колокольчик — телефонная кнопка платформы, с красной точкой события. */
+  .catalog-header__bell {
+    display: flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; margin-left: 4px; flex-shrink: 0;
+    color: #fff;
+  }
+  .catalog-header__bell svg { width: 26px; height: 26px; }
+  .catalog-header__dot { top: 5px; inset-inline-end: 5px; width: 9px; height: 9px; }
+  /*
+   * Пилюля баланса — тёмная, с золотым ромбом и золотым числом. Кнопки «+»
+   * в телефонной шапке нет: её место занимают колокольчик и аватар.
+   */
+  .catalog-header__balance {
+    height: 32px; padding: 0 12px 0 9px; gap: 5px; margin-left: auto;
+    background: #3b3b3e;
+    color: #edb200; font-size: 15px; font-weight: 700; font-style: italic;
+  }
+  .catalog-header__coin { width: 17px; height: 17px; }
+  .catalog-header__plus { display: none; }
+
+  /*
+   * Телефонный поиск — лупа ПЕРЕД полем и никакой кнопки отправки: так он
+   * устроен в офлайн-копии настоящей мобильной шапки
+   * (`Icon_type_search-white` идёт до `<input>`). На компьютере наоборот —
+   * сначала `<input>`, потом `<button type="submit">`, — поэтому значок там
+   * остаётся справа и десктопную раскладку это правило не трогает.
+   */
+  .catalog-search {
+    width: auto; max-width: none; height: 46px; margin: 15px 0 16px;
+    padding: 0 16px 0 46px; border-radius: 14px;
+    background: rgba(255, 255, 255, 0.12); color: var(--white-600); font-size: 16px;
+  }
+  .catalog-search__submit {
+    inset-inline-start: 0; inset-inline-end: auto;
+    width: 46px; height: 46px; background: none;
+    color: rgba(255, 255, 255, 0.75);
+  }
+  .catalog-search__submit svg { width: 20px; height: 20px; }
+
+  /* ── лента «Мои игры» ──────────────────────────────────────────────── */
+  /*
+   * На телефоне лента становится своей секцией: строка заголовка («Мои
+   * игры ›» слева, «Изменить» справа), под ней горизонтальный ряд плиток с
+   * подписями. Числа сняты со снимка настоящей страницы (1125 px при ×3,
+   * то есть 375 css): плитка 94.3 px, зазор 11.3 px — ровно три с хвостом
+   * в ширину экрана, поэтому четвёртая плитка выглядывает за край и ряд
+   * читается прокручиваемым.
+   */
+  .played { display: block; overflow: visible; margin: 0; }
+  /* 15px от подписей ленты до заголовка секции — по снимку. */
+  .feed-section:first-child { margin-top: 15px; }
+  .played__head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; margin: 0 0 12px;
+  }
+  .played__button {
+    width: auto; height: auto; padding: 0; border-radius: 0; background: none;
+    flex-direction: row; align-items: center; gap: 6px;
+    font-size: 22px; font-weight: 500; line-height: 1.2; text-align: start;
+  }
+  .played__arrow {
+    width: auto; height: auto; border-radius: 0; background: none;
+    font-size: 26px; font-weight: 400; color: var(--white-600);
+  }
+  .played__edit { display: block; color: #a68cff; font-size: 16px; }
+  /*
+   * Ряд уходит за поля страницы и прокручивается: у платформы плитки
+   * начинаются от края экрана, а не от поля ленты.
+   */
+  .played__list {
+    gap: 11.3px; margin: 0 -12px; padding: 0 12px;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .played__list::-webkit-scrollbar { display: none; }
+  .played__card { width: 94.3px; }
+  .played__tile { width: 94.3px; height: 94.3px; border-radius: 16px; }
+  .played__name {
+    display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;
+    -webkit-line-clamp: 2; line-clamp: 2;
+    margin-top: 8px; font-size: 15px; line-height: 19px; font-weight: 400; color: #fff;
+  }
 
   /* ── лента ─────────────────────────────────────────────────────────── */
   .feed { padding-bottom: 96px; }
   .feed-section { margin-bottom: 24px; }
-  .feed-section__title, .similar__title { font-weight: 500; font-size: 18px; line-height: 1.2; margin: 0 0 10px; }
+  /* Заголовок секции — 22px, как «Мои игры» над ним. */
+  .feed-section__title, .similar__title { font-weight: 500; font-size: 22px; line-height: 1.2; margin: 0 0 12px; }
 
   .games-grid, .similar__grid {
     display: grid; grid-template-columns: repeat(3, 1fr);
@@ -602,7 +738,13 @@ body.is-play { overflow: hidden; }
   .game-card__cover { display: none; }
   .game-card__tile { display: block; }
   .game-card__description { display: block; }
-  .game-card__title-on-card, .game-badges__sticky-badge { display: none; }
+  .game-card__title-on-card { display: none; }
+  /* Значок «моментальной» игры — фиолетовая плитка в левом верхнем углу. */
+  .game-badges__sticky-badge {
+    display: flex; align-items: center; justify-content: center;
+    position: absolute; top: 0; left: 0; width: 27px; height: 27px;
+    border-radius: 8px 0 9px 0; background: #6136e0;
+  }
   .game-card__title { font-weight: 500; font-size: 13px; line-height: 18px; -webkit-line-clamp: 2; line-clamp: 2; }
   /* «ℹ» в правом верхнем углу плитки — как на витрине платформы */
   .game-card__info {
@@ -664,17 +806,26 @@ body.is-play { overflow: hidden; }
   /* ── нижняя панель ─────────────────────────────────────────────────── */
   .tabbar {
     display: flex; position: fixed; left: 50%; transform: translateX(-50%);
-    bottom: 12px; z-index: 40; width: calc(100% - 24px); max-width: 396px;
-    padding: 6px; border-radius: 26px;
+    bottom: 13px; z-index: 40; width: calc(100% - 38px); max-width: 396px;
+    padding: 5px; border-radius: 28px;
     background: rgba(28, 28, 40, 0.92); backdrop-filter: blur(12px);
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
   }
+  /*
+   * Вкладка — значок над подписью, а не подпись в строку: у платформы это
+   * «дом», «ключ» (магазин) и человек (профиль). Активная лежит на светлой
+   * пилюле, остальные приглушены.
+   */
   .tabbar__item {
-    flex: 1 1 0; display: flex; align-items: center; justify-content: center;
-    height: 40px; border-radius: 20px; font-size: 13px; color: var(--white-600);
+    flex: 1 1 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 2px;
+    height: 46px; border-radius: 20px; font-size: 14px; line-height: 16px;
+    color: var(--white-600);
   }
+  .tabbar__icon { display: flex; height: 24px; }
+  .tabbar__icon svg { width: 24px; height: 24px; }
   .tabbar__item_active { background: rgba(255, 255, 255, 0.14); color: #fff; }
-  .tabbar__item_off { opacity: 0.45; cursor: default; }
+  .tabbar__item_off { color: rgba(255, 255, 255, 0.72); cursor: default; }
 
   .footer { padding: 20px 0 24px; }
 }
