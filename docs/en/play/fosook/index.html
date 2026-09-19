@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fosook — Yandex Games</title>
+<meta name="description" content="A kitchen for two: chop, fry, plate and serve before the bell">
+<meta name="author" content="fosemberg">
+<meta name="copyright" content="© 2026 fosemberg. All rights reserved.">
+<meta name="robots" content="noindex">
+<!--
+  Превью каталога Яндекс Игр для игр fosemberg.
+
+  Игры, их исходный код, графика, тексты, звук и промо-материалы принадлежат
+  владельцу fosemberg.github.io. Это не open-source и не свободный набор
+  ассетов: копировать игру или её части, выкачивать графику, переделывать
+  и распространять без письменного разрешения нельзя.
+
+  Оформление каталога принадлежит Яндексу и воспроизведено здесь только как
+  макет — эта страница не является страницей Яндекс Игр.
+-->
+<link rel="stylesheet" href="../../../assets/yandex.css">
+</head>
+<body class="is-play">
+<div class="background"><div class="background__gradient"></div><div class="background__image"></div></div>
+<div class="preview-bar">
+  <span class="preview-bar__tag">Preview</span>
+  <span class="preview-bar__text">A catalogue mock-up. Not a Yandex Games page — scores and counters here are placeholders.</span>
+  <span class="preview-bar__spacer"></span>
+  <div class="preview-bar__switch" role="group">
+    <button type="button" data-view="desktop" aria-pressed="true">Desktop</button>
+    <button type="button" data-view="mobile" aria-pressed="false">Mobile</button>
+  </div>
+  <a class="preview-bar__switch" href="../../../play/fosook/index.html" style="padding:3px 10px">Русский</a>
+</div>
+<div class="play-app">
+  <header class="play-game-header">
+    <a class="play-game-header__logo" href="../../../index.html"><span class="catalog-header__logo-mark"></span>Yandex Games</a>
+    <a class="play-game-header__title" href="../../../app/fosook/index.html">Fosook</a>
+    <span class="play-game-header__spacer"></span>
+    <span class="catalog-header__balance"><span class="catalog-header__coin"></span>0</span>
+    <a class="play-game-header__action" href="https://fosemberg.github.io/fosook-pages/" target="_blank" rel="noopener" title="Open the game in a new tab">↗</a>
+    <button class="play-game-header__action" type="button" data-fullscreen title="Fullscreen">⛶</button>
+  </header>
+  <div class="game-root">
+    <iframe id="game-frame" src="https://fosemberg.github.io/fosook-pages/" title="Fosook"
+      allow="autoplay; fullscreen; gamepad; accelerometer; gyroscope; clipboard-write"
+      allowfullscreen></iframe>
+    <div class="game-root__fallback" data-frame-fallback hidden>
+      <p>The game did not load in the frame — there may be no network, or its host forbids embedding.</p>
+      <a class="btn-play" href="https://fosemberg.github.io/fosook-pages/" target="_blank" rel="noopener">Open the game in a new tab</a>
+    </div>
+    <div class="game-root__note">The game is served from its own address. On Yandex Games this frame would hold the archive uploaded to the console.</div>
+  </div>
+</div>
+<script src="../../../assets/preview.js" defer></script>
+</body>
+</html>
