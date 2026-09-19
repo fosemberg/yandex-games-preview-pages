@@ -104,7 +104,9 @@ button { font: inherit; color: inherit; }
   background: #ffd86a; color: #2b2200;
   font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; font-size: 11px;
 }
-.preview-bar__text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.preview-bar__text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+/* Короткий вариант подписи нужен только узкому экрану — см. блок телефона. */
+.preview-bar__text_short { display: none; }
 .preview-bar__spacer { flex: 1 1 auto; }
 .preview-bar__switch { display: flex; gap: 2px; background: rgba(255, 255, 255, 0.08); border-radius: 7px; padding: 2px; flex-shrink: 0; }
 .preview-bar__switch button {
@@ -557,7 +559,8 @@ body.is-play { overflow: hidden; }
    * сохранён отрендеренный DOM вместе со стилями, и все числа ниже взяты
    * оттуда, а не подобраны на глаз.
    *
-   *   поля страницы     padding-inline: 10px  (.fixed-tablet-width .section)
+   *   поля страницы     padding-inline: 12px  (замер по снимку: текст и
+   *                     плитки начинаются с 12.7)
    *   сетка             3 в ряд: ширина 31.666 %, отступ слева 2.5 %,
    *                     margin-bottom 12px   (.grid-list__game-item)
    *   плитка            КВАДРАТ: width 100 %, padding-bottom 100 %
@@ -570,6 +573,51 @@ body.is-play { overflow: hidden; }
    *                     строке, поиск во второй (header-wrapper__headerBase)
    */
   .shell { padding: 0 12px; }
+
+  /*
+   * ПОЛОСА ПРЕВЬЮ НА ТЕЛЕФОНЕ — ДВЕ СТРОКИ.
+   *
+   * В одну строку метка, подпись и обе переключалки не помещаются: на
+   * 375 px подпись ужималась до многоточия, а на 320 px полоса уезжала за
+   * край экрана вместе с «English» (замер: документ 346 при экране 320).
+   *
+   * Прятать подпись нельзя — это главная пометка «макет, а не страница
+   * Яндекс Игр», и чем ближе раскладка к настоящей, тем она нужнее.
+   * Поэтому сверху метка и переключалки, под ними короткий вариант
+   * подписи; полный остаётся широкому экрану.
+   *
+   * Высота едет В ПЕРЕМЕННУЮ: от неё считаются прилипшая шапка
+   * (`top: var(--preview-bar-h)`), высота приложения и рамка запущенной
+   * игры. Разъехавшись, они спрятали бы шапку под полосой.
+   */
+  :root { --preview-bar-h: 50px; }
+  .preview-bar {
+    flex-wrap: wrap; align-content: center;
+    column-gap: 8px; row-gap: 2px; padding: 0 10px;
+  }
+  /*
+   * Порядок задаёт `order`, а место между меткой и переключалками держит
+   * распорка. Отступ `margin-inline-end: auto` на метке тут не годится:
+   * при переносе он съедает всю свободную ширину строки и выталкивает
+   * переключалки на третью строку.
+   */
+  .preview-bar__tag { order: 1; }
+  .preview-bar__spacer { order: 2; }
+  .preview-bar__switch { order: 3; }
+  .preview-bar__text_full { display: none; }
+  .preview-bar__text_short { order: 4; display: block; flex-basis: 100%; }
+  .preview-bar__switch button { padding: 3px 8px; }
+
+  /*
+   * На 320 px метка и обе переключалки набирают ровно ширину экрана
+   * (67 + 150 + 59 + зазоры + поля = 320), запаса нет, и «English»
+   * срывается на третью строку, а полосу подрезает по высоте. Ужимаем
+   * зазоры и кнопки — на 320 остаётся ~28 px запаса.
+   */
+  @media (max-width: 359px) {
+    .preview-bar { column-gap: 6px; padding: 0 8px; }
+    .preview-bar__switch button { padding: 3px 6px; }
+  }
 
   /*
    * Фон телефона — ЧИСТАЯ ВЕРТИКАЛЬ. На компьютере у платформы поверх
@@ -757,10 +805,15 @@ body.is-play { overflow: hidden; }
 
   /* ── страница игры ─────────────────────────────────────────────────── */
   .middle-layer { max-width: none; padding: 0 0 40px; }
-  .middle-layer__back { margin: 8px 10px; }
+  .middle-layer__back { margin: 8px 12px; }
   .middle-layer-page { background: none; }
   .ml-sections { grid-template-columns: minmax(0, 1fr); }
-  .middle-layer__preview { height: auto; border-radius: 0; margin: 0 -10px; }
+  /*
+   * Кадр во всю ширину: `.middle-layer` на телефоне и так без боковых
+   * отступов, поэтому отрицательные поля уводили его на 10px за край
+   * экрана (документ 385 при вьюпорте 375) и страница ездила вбок.
+   */
+  .middle-layer__preview { height: auto; border-radius: 0; margin: 0; }
   .middle-layer__media { position: relative; aspect-ratio: 16 / 9; }
   .middle-layer__media img { object-fit: contain; }
   .middle-layer__scrim { background: linear-gradient(180deg, #14141400 30%, #141414cc 80%, #141414 100%); }
@@ -772,7 +825,7 @@ body.is-play { overflow: hidden; }
    */
   .middle-layer__card {
     display: flex; gap: 12px; align-items: flex-start;
-    width: auto; max-width: none; padding: 0 10px; position: relative;
+    width: auto; max-width: none; padding: 0 12px; position: relative;
   }
   .middle-layer__icon { width: 72px; height: 72px; margin-top: -28px; }
   .middle-layer__title { font-size: 22px; }
