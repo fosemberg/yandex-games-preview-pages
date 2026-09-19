@@ -683,7 +683,7 @@ body.is-play { overflow: hidden; min-height: 0; }
    * логотип, баланс и аватар сверху, поиск во всю ширину под ними.
    */
   .catalog-header {
-    position: static; min-height: 0; padding: 20px 12px 0; background: none;
+    position: static; min-height: 0; padding: 15px 12px 0; background: none;
     display: grid; align-items: center;
     grid-template-columns: auto auto 1fr auto;
     grid-template-areas: 'burger logo . end' 'search search search search';
@@ -751,7 +751,7 @@ body.is-play { overflow: hidden; min-height: 0; }
    * остаётся справа и десктопную раскладку это правило не трогает.
    */
   .catalog-search {
-    width: auto; max-width: none; height: 46px; margin: 15px 0 16px;
+    width: auto; max-width: none; height: 46px; margin: 12px 0 16px;
     padding: 0 16px 0 46px; border-radius: 14px;
     background: rgba(255, 255, 255, 0.12); color: var(--white-600); font-size: 16px;
   }
@@ -781,7 +781,7 @@ body.is-play { overflow: hidden; min-height: 0; }
   .played__button {
     width: auto; height: auto; padding: 0; border-radius: 0; background: none;
     flex-direction: row; align-items: center; gap: 6px;
-    font-size: 22px; font-weight: 500; line-height: 1.2; text-align: start;
+    font-size: 20px; font-weight: 500; line-height: 1.2; text-align: start;
   }
   .played__arrow {
     width: auto; height: auto; border-radius: 0; background: none;
@@ -793,23 +793,23 @@ body.is-play { overflow: hidden; min-height: 0; }
    * начинаются от края экрана, а не от поля ленты.
    */
   .played__list {
-    gap: 11.3px; margin: 0 -12px; padding: 0 12px;
+    gap: 8.7px; margin: 0 -12px; padding: 0 12px;
     overflow-x: auto; scrollbar-width: none;
   }
   .played__list::-webkit-scrollbar { display: none; }
-  .played__card { width: 94.3px; }
-  .played__tile { width: 94.3px; height: 94.3px; border-radius: 16px; }
+  .played__card { width: 97px; }
+  .played__tile { width: 97px; height: 97px; border-radius: 8px; }
   .played__name {
     display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;
     -webkit-line-clamp: 2; line-clamp: 2;
-    margin-top: 8px; font-size: 15px; line-height: 19px; font-weight: 400; color: #fff;
+    margin-top: 8px; font-size: 15px; line-height: 17px; font-weight: 400; color: #fff;
   }
 
   /* ── лента ─────────────────────────────────────────────────────────── */
   .feed { padding-bottom: 96px; }
   .feed-section { margin-bottom: 24px; }
-  /* Заголовок секции — 22px, как «Мои игры» над ним. */
-  .feed-section__title, .similar__title { font-weight: 500; font-size: 22px; line-height: 1.2; margin: 0 0 12px; }
+  /* Заголовок секции — 20px, как «Мои игры» над ним. */
+  .feed-section__title, .similar__title { font-weight: 500; font-size: 20px; line-height: 1.2; margin: 0 0 12px; }
 
   .games-grid, .similar__grid {
     display: grid; grid-template-columns: repeat(3, 1fr);
@@ -909,7 +909,7 @@ body.is-play { overflow: hidden; min-height: 0; }
   .middle-layer__body { display: contents; }
   .middle-layer__icon {
     grid-column: 1; grid-row: 1 / span 2;
-    width: 114px; height: 114px; margin: 0; border-radius: 22px;
+    width: 114px; height: 114px; margin: 0; border-radius: 14px;
   }
   .middle-layer__title {
     grid-column: 2; grid-row: 1; margin: 0;
@@ -922,10 +922,10 @@ body.is-play { overflow: hidden; min-height: 0; }
   /* Категории — по строке, разработчик первой строкой над ними. */
   .middle-layer__meta {
     grid-column: 2; grid-row: 2; margin: 0;
-    display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px;
   }
   .middle-layer__separator { display: none; }
-  .middle-layer__developer { order: -1; }
+  .middle-layer__developer { order: -1; flex-basis: 100%; }
   /* Рейтинги — двумя строками во всю ширину, под иконкой. */
   .middle-layer__ratings {
     grid-column: 1 / -1; grid-row: 3; margin: 0;
