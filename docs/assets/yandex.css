@@ -1,0 +1,344 @@
+/*
+ * Яндекс Игры — воспроизведение оформления каталога.
+ * Палитра, геометрия и радиусы сняты с настоящих страниц: HAR-файлы лежат в
+ * соседнем репо `yandex-ru-games-hars` (desktop/mobile × main/preview/play),
+ * критический CSS у них инлайнится в документ. Здесь он не копируется, а
+ * написан заново теми же значениями — иначе за хэшированными именами классов
+ * (`middle-layer-info-critical-module__icon--cRWCx`) ничего не разобрать.
+ *
+ * © 2026, владелец fosemberg.github.io. Все права защищены.
+ */
+
+:root {
+  /* палитра платформы */
+  --white-1000: #fff;
+  --white-600: rgba(255, 255, 255, 0.6);
+  --black-1000: #000;
+  --color-background: #111;
+  --color-base: #222;
+  --color-main-theme: #2d2d2f;
+  --color-popup: #3c3c3e;
+  --color-project: #5641ff;
+  --color-control-primary-hover: #5d4dde;
+  --color-quality-score-bg: #777;
+  --color-quality-score-bg-transparent: #777777d9;
+  --color-quality-score-high-bg: #3bb33b;
+  --color-quality-score-high-bg-transparent: #33d043d9;
+  --age-rating-green: #14b04a;
+  --age-rating-orange: #e08800;
+  --age-rating-red: #e0000f;
+  --color-background-dark-purple-gradient: radial-gradient(88% 100% at 11% 0%, #5c5476, #2f2e33);
+
+  --border-radius-large: 16px;
+  --preview-radius: 12px;
+  --middle-layer-media-height: 450px;
+
+  /* превью-бар этого макета, не платформы */
+  --preview-bar-h: 40px;
+
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  background: var(--color-background);
+  color: var(--white-1000);
+  font-family: 'YS Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+
+/* ── фон страницы: картинка + градиент, как у платформы ─────────────── */
+
+.background { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
+.background__gradient { position: absolute; inset: 0; background: var(--color-background-dark-purple-gradient); }
+.background__image {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(60% 55% at 78% 8%, rgba(120, 104, 190, 0.35), transparent 70%),
+                    radial-gradient(45% 40% at 12% 88%, rgba(70, 92, 150, 0.3), transparent 70%);
+}
+
+/* ── шапка превью (не часть платформы) ──────────────────────────────── */
+
+.preview-bar {
+  position: sticky; top: 0; z-index: 90;
+  display: flex; align-items: center; gap: 12px;
+  height: var(--preview-bar-h);
+  padding: 0 14px;
+  background: #1b1b2e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 12px; color: rgba(255, 255, 255, 0.72);
+}
+.preview-bar__tag {
+  flex-shrink: 0;
+  padding: 2px 8px; border-radius: 5px;
+  background: #ffd86a; color: #2b2200;
+  font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; font-size: 11px;
+}
+.preview-bar__text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.preview-bar__spacer { flex: 1 1 auto; }
+.preview-bar__switch { display: flex; gap: 2px; background: rgba(255, 255, 255, 0.08); border-radius: 7px; padding: 2px; flex-shrink: 0; }
+.preview-bar__switch button {
+  border: 0; background: transparent; color: rgba(255, 255, 255, 0.65);
+  padding: 3px 10px; border-radius: 5px; cursor: pointer; font-size: 12px;
+}
+.preview-bar__switch button[aria-pressed='true'] { background: rgba(255, 255, 255, 0.18); color: #fff; }
+
+/* ── общий каркас ───────────────────────────────────────────────────── */
+
+.app { min-height: calc(100vh - var(--preview-bar-h)); display: flex; flex-direction: column; }
+.app__wrapper { flex: 1 1 auto; display: flex; flex-direction: column; }
+.shell { width: 100%; max-width: 1440px; margin: 0 auto; padding: 0 36px; }
+
+/* ── шапка каталога ─────────────────────────────────────────────────── */
+
+.catalog-header {
+  display: flex; align-items: center; gap: 16px;
+  height: 64px;
+}
+.catalog-header__logo { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+.catalog-header__logo-mark {
+  width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+  background: linear-gradient(135deg, #ff5c5c, #ffb020 45%, #5641ff);
+}
+.catalog-header__spacer { flex: 1 1 auto; }
+.catalog-header__balance {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 32px; padding: 0 12px; border-radius: 16px;
+  background: rgba(255, 255, 255, 0.1); font-size: 14px; font-weight: 500;
+}
+.catalog-header__coin { width: 16px; height: 16px; border-radius: 50%; background: linear-gradient(160deg, #ffd86a, #e09d00); flex-shrink: 0; }
+
+/* ── лента каталога ─────────────────────────────────────────────────── */
+
+.feed { padding-bottom: 48px; }
+.feed__hero { padding: 8px 0 28px; }
+.feed__hero h1 { margin: 0 0 8px; font-size: 32px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; }
+.feed__hero p { margin: 0; max-width: 62ch; color: var(--white-600); font-size: 15px; }
+
+.feed-section { margin-bottom: 36px; }
+.feed-section__title { margin: 0 0 16px; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+
+.games-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); gap: 20px 16px; }
+
+/* карточка игры — .game-card платформы */
+.game-card { display: flex; flex-direction: column; gap: 8px; }
+.game-card__graphic { position: relative; border-radius: var(--preview-radius); overflow: hidden; aspect-ratio: 800 / 470; background: #2a2a2e; }
+.game-card__graphic img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.25s ease; }
+.game-card:hover .game-card__graphic img { transform: scale(1.04); }
+.game-card__description { display: flex; gap: 8px; align-items: flex-start; min-width: 0; }
+.game-card__icon { width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0; background: #2a2a2e; }
+/* min-width:0 обязателен: без него flex-элемент не даёт тексту обрезаться и
+   подпись вылезает за карточку — она однострочная с многоточием. */
+.game-card__text { min-width: 0; flex: 1 1 auto; display: block; }
+.game-card__title { font-size: 15px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-clamp: 2; }
+/* display:block обязателен: overflow/text-overflow не действуют на строчный
+   бокс, а подпись — <span>, и без этого она вылезала за карточку. */
+.game-card__caption { display: block; margin-top: 2px; font-size: 13px; color: var(--white-600); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* оценка качества — .game-quality-score */
+.game-quality-score { display: flex; align-items: center; flex-direction: row; }
+.game-quality-score__value {
+  display: flex; align-items: center; justify-content: center;
+  width: 27px; height: 20px; border-radius: 5px;
+  background-color: var(--color-quality-score-bg); color: var(--white-1000);
+  font-size: 13px; font-weight: 500;
+}
+.game-quality-score__value_high { background-color: var(--color-quality-score-high-bg); }
+.game-quality-score__value_transparent { background-color: var(--color-quality-score-bg-transparent); }
+.game-quality-score__value_high.game-quality-score__value_transparent { background-color: var(--color-quality-score-high-bg-transparent); }
+.game-quality-score__text { margin-left: 6px; opacity: 0.8; font-size: 13px; }
+.game-badges__game-quality-badge { position: absolute; bottom: 0; left: 0; pointer-events: none; }
+.game-badges__game-quality-badge .game-quality-score__value { border-radius: 0 12px 0 0; width: 31px; height: 22px; }
+
+/* оценка игроков — .game-rating-description */
+.game-rating-description { display: flex; align-items: center; opacity: 0.8; }
+.game-rating-description__star { width: 12px; height: 12px; flex-shrink: 0; }
+.game-rating-description__rating { margin-left: 3px; font-size: 13px; font-weight: 500; }
+.game-rating-description__text { padding-left: 4px; font-size: 13px; line-height: 15px; }
+
+/* возрастной рейтинг — .ageTag */
+.age-tag {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 18px; padding: 5px 5px 4px; border-radius: 6px;
+  width: min-content; font-size: 12px; font-weight: 500; line-height: 1;
+  user-select: none;
+}
+.age-tag_green { color: var(--age-rating-green); border: 1px solid var(--age-rating-green); }
+.age-tag_orange { color: var(--age-rating-orange); border: 1px solid var(--age-rating-orange); }
+.age-tag_red { color: var(--age-rating-red); border: 1px solid var(--age-rating-red); }
+
+/* категория — .category */
+.category { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; color: var(--white-600); }
+.category__icon { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* ── страница игры (middle layer, десктоп) ──────────────────────────── */
+
+.middle-layer { padding: 8px 0 40px; }
+.middle-layer__back {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 40px; padding: 0 16px; margin-bottom: 16px;
+  border: 0; border-radius: 12px; cursor: pointer;
+  background: rgba(255, 255, 255, 0.12); font-size: 15px; font-weight: 500;
+}
+.middle-layer__back:hover { background: rgba(255, 255, 255, 0.2); }
+
+.middle-layer__preview { position: relative; border-radius: var(--preview-radius); overflow: hidden; height: var(--middle-layer-media-height); }
+/* Как у платформы: размытая подложка того же кадра + сам кадр целиком
+   (`middle-layer-media-preview__blur` в настоящей разметке). Иначе
+   портретный скриншот пришлось бы резать на узкую полосу. */
+.middle-layer__media { position: absolute; inset: 0; overflow: hidden; }
+.middle-layer__blur {
+  position: absolute; inset: -40px;
+  background-size: cover; background-position: center;
+  filter: blur(36px) saturate(1.2) brightness(0.72);
+}
+.middle-layer__media img { position: relative; width: 100%; height: 100%; object-fit: contain; }
+.middle-layer__scrim {
+  position: absolute; inset: -1px; width: calc(100% + 2px); height: calc(100% + 2px);
+  background: linear-gradient(240deg, #14141400 40%, #1414149e 60%, #141414db 70%, #141414ed);
+}
+.middle-layer__info {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column-reverse;
+}
+.middle-layer__card {
+  display: grid; grid-template: 'icon' 'description'; gap: 15px;
+  width: max-content; max-width: 500px;
+  padding-bottom: 24px; padding-inline-start: 24px;
+}
+.middle-layer__icon { grid-area: icon; width: 96px; height: 96px; border-radius: var(--border-radius-large); }
+.middle-layer__body { grid-area: description; display: grid; gap: 8px; }
+.middle-layer__title { margin: 0; font-size: 32px; line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; }
+.middle-layer__short { font-size: 15px; line-height: 1.4; max-width: 450px; color: rgba(255, 255, 255, 0.85); }
+.middle-layer__ratings { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.middle-layer__ratings .game-quality-score__text,
+.middle-layer__ratings .game-rating-description { opacity: 1; }
+.middle-layer__meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--white-600); }
+.middle-layer__separator { width: 1px; height: 12px; background: rgba(255, 255, 255, 0.3); }
+.middle-layer__developer { color: rgba(255, 255, 255, 0.85); }
+.middle-layer__developer:hover { color: #fff; text-decoration: underline; }
+
+.btn-play {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 48px; padding: 0 28px; margin-top: 8px;
+  border: 0; border-radius: 14px; cursor: pointer;
+  background: var(--color-project); color: #fff;
+  font-size: 17px; font-weight: 600; width: max-content;
+}
+.btn-play:hover { background: var(--color-control-primary-hover); }
+
+/* ── блоки описания ─────────────────────────────────────────────────── */
+
+.ml-sections { display: grid; grid-template-columns: minmax(0, 1fr) 368px; gap: 16px; align-items: start; margin-top: 24px; }
+.ml-main { display: grid; gap: 20px; }
+.ml-side { display: grid; gap: 16px; }
+
+.panel { background: var(--color-main-theme); border-radius: var(--preview-radius); padding: 20px 24px; }
+.panel h2 { margin: 0 0 12px; font-size: 20px; font-weight: 700; }
+.panel p { margin: 0 0 12px; white-space: pre-line; color: rgba(255, 255, 255, 0.85); }
+.panel p:last-child { margin-bottom: 0; }
+
+.shots { display: grid; gap: 12px; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); overflow-x: auto; scrollbar-width: thin; padding-bottom: 4px; }
+.shots img { border-radius: 10px; width: 100%; }
+.shots_portrait { grid-auto-columns: minmax(0, 200px); }
+
+.features { display: grid; gap: 0; }
+.features__item { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-size: 14px; }
+.features__item:last-child { border-bottom: 0; }
+.features__name { color: var(--white-600); }
+.features__value { text-align: right; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 14px; background: rgba(255, 255, 255, 0.1); font-size: 13px; color: rgba(255, 255, 255, 0.85); }
+
+/* ── похожие игры ───────────────────────────────────────────────────── */
+
+.similar { margin-top: 32px; }
+.similar__title { margin: 0 0 16px; font-size: 22px; font-weight: 700; }
+.similar__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(212px, 1fr)); gap: 16px; }
+
+/* ── страница игры (play) ───────────────────────────────────────────── */
+
+body.is-play { overflow: hidden; }
+.play-app { display: flex; flex-direction: column; height: calc(100vh - var(--preview-bar-h)); }
+.play-game-header {
+  display: flex; align-items: center; gap: 16px;
+  height: 48px; padding: 0 16px; flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+.play-game-header__logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 16px; }
+.play-game-header__logo .catalog-header__logo-mark { width: 22px; height: 22px; border-radius: 6px; }
+.play-game-header__title { font-size: 15px; color: rgba(255, 255, 255, 0.85); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.play-game-header__spacer { flex: 1 1 auto; }
+.play-game-header__action {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 32px; min-width: 32px; padding: 0 10px; border: 0; border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12); cursor: pointer; font-size: 13px;
+}
+.play-game-header__action:hover { background: rgba(255, 255, 255, 0.2); }
+.game-root { flex: 1 1 auto; position: relative; background: #000; min-height: 0; }
+.game-root iframe { width: 100%; height: 100%; border: 0; display: block; }
+.game-root__fallback {
+  position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 16px;
+  padding: 24px; text-align: center; background: var(--color-base); color: rgba(255, 255, 255, 0.85);
+}
+.game-root__fallback[hidden] { display: none; }
+.game-root__fallback p { margin: 0; max-width: 42ch; }
+.game-root__note {
+  position: absolute; inset-inline: 0; bottom: 0;
+  padding: 8px 16px; background: rgba(0, 0, 0, 0.6);
+  font-size: 12px; color: rgba(255, 255, 255, 0.7); text-align: center;
+}
+
+/* ── подвал ─────────────────────────────────────────────────────────── */
+
+.footer { padding: 24px 0 32px; border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: auto; }
+.footer__inner { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; font-size: 13px; color: var(--white-600); }
+.footer__links { display: flex; gap: 16px; flex-wrap: wrap; }
+.footer__links a:hover { color: #fff; }
+.footer__legal { flex-basis: 100%; color: rgba(255, 255, 255, 0.45); line-height: 1.5; }
+
+/* ── мобильная раскладка ────────────────────────────────────────────── */
+
+@media (max-width: 1023px) {
+  .shell { padding: 0 16px; }
+  .feed__hero h1 { font-size: 24px; }
+  .games-grid { grid-template-columns: repeat(auto-fill, minmax(152px, 1fr)); gap: 16px 12px; }
+  .game-card__title { font-size: 14px; }
+  .similar__grid { grid-template-columns: repeat(auto-fill, minmax(152px, 1fr)); gap: 12px; }
+  .ml-sections { grid-template-columns: minmax(0, 1fr); }
+
+  /* страница игры на телефоне — шторка, а не кадр с фоном */
+  .middle-layer__preview { height: auto; border-radius: 0; margin: 0 -16px; }
+  .middle-layer__media { position: relative; aspect-ratio: 16 / 9; }
+  .middle-layer__media img { object-fit: contain; }
+  .middle-layer__scrim { background: linear-gradient(180deg, #14141400 30%, #141414cc 80%, #141414 100%); }
+  .middle-layer__info { position: static; }
+  .middle-layer__card {
+    display: flex; gap: 12px; align-items: flex-start;
+    width: auto; max-width: none;
+    margin-top: -36px; padding: 0 16px 0; position: relative;
+  }
+  .middle-layer__icon { width: 72px; height: 72px; }
+  .middle-layer__title { font-size: 22px; }
+  .middle-layer__short { font-size: 14px; }
+  .btn-play { width: 100%; }
+  .panel { padding: 16px; }
+  .shots_portrait { grid-auto-columns: minmax(0, 132px); }
+}
+
+/* принудительный мобильный вид из переключателя превью */
+html.force-mobile .shell { padding: 0 16px; }
+html.force-mobile .app { max-width: 420px; margin: 0 auto; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12); }
+html.force-mobile .play-app { max-width: 420px; margin: 0 auto; }
