@@ -1,1 +1,1 @@
-# -yandex-games-preview-pages
+# yandex-games-preview-pages
