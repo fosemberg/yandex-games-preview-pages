@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fosin — Yandex Games</title>
+<meta name="description" content="A card race to the ocean floor: dive deeper and prank your rivals">
+<meta name="author" content="fosemberg">
+<meta name="copyright" content="© 2026 fosemberg. All rights reserved.">
+<meta name="robots" content="noindex">
+<!--
+  Превью каталога Яндекс Игр для игр fosemberg.
+
+  Игры, их исходный код, графика, тексты, звук и промо-материалы принадлежат
+  владельцу fosemberg.github.io. Это не open-source и не свободный набор
+  ассетов: копировать игру или её части, выкачивать графику, переделывать
+  и распространять без письменного разрешения нельзя.
+
+  Оформление каталога принадлежит Яндексу и воспроизведено здесь только как
+  макет — эта страница не является страницей Яндекс Игр.
+-->
+<link rel="stylesheet" href="../../../assets/yandex.css">
+</head>
+<body class="page-game">
+<div class="background"><div class="background__gradient"></div><div class="background__image"></div></div>
+<div class="preview-bar">
+  <span class="preview-bar__tag">Preview</span>
+  <span class="preview-bar__text preview-bar__text_full">A catalogue mock-up. Not a Yandex Games page — scores and counters here are placeholders.</span>
+  <span class="preview-bar__text preview-bar__text_short">A mock-up. Not a Yandex Games page.</span>
+  <span class="preview-bar__spacer"></span>
+  <div class="preview-bar__switch" role="group">
+    <button type="button" data-view="desktop" aria-pressed="true">Desktop</button>
+    <button type="button" data-view="mobile" aria-pressed="false">Mobile</button>
+  </div>
+  <a class="preview-bar__switch" href="../../../app/fosin/index.html" style="padding:3px 10px">Русский</a>
+</div>
+<div class="app"><div class="app__wrapper">
+<header class="catalog-header">
+  <div class="catalog-header__start">
+    <span class="catalog-header__burger" aria-hidden="true"></span>
+    <a class="catalog-header__logo" href="../../../index.html" title="Yandex Games">
+      <span class="catalog-header__logo-ya" aria-hidden="true">Я</span>
+    <span class="catalog-header__logo-pad" aria-hidden="true"><svg width="34" height="24" viewBox="0 0 34 24" aria-hidden="true"><path fill="currentColor" d="M10 4h14a9 9 0 0 1 8.9 7.6l.6 3.9a4.5 4.5 0 0 1-7.3 3.9L23.5 16.5h-13L7.8 19.4a4.5 4.5 0 0 1-7.3-3.9l.6-3.9A9 9 0 0 1 10 4Z"/><path fill="#4a2f7a" d="M7.6 8.6h2.2v2.3H12v2.2H9.8v2.3H7.6v-2.3H5.4v-2.2h2.2z"/><circle cx="24.6" cy="10.4" r="1.7" fill="#4a2f7a"/><circle cx="27.6" cy="13.6" r="1.7" fill="#4a2f7a"/></svg></span>
+    <span class="catalog-header__logo-word">Games</span>
+    </a>
+    <div class="catalog-search" aria-hidden="true">
+      <span class="catalog-search__submit"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M7 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm3.6-1.4L14 14"/></svg></span>
+      <span class="catalog-search__field">Find a game or genre</span>
+    </div>
+  </div>
+  <div class="catalog-header__center">
+    <nav class="catalog-nav" aria-label="Catalog">
+      <span class="catalog-nav__item catalog-nav__item_active"><svg class="catalog-nav__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg><span>Catalog</span></span>
+    </nav>
+  </div>
+  <div class="catalog-header__end" aria-hidden="true">
+    <span class="catalog-header__balance"><span class="catalog-header__coin"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1.4 14.6 8 8 14.6 1.4 8Z"/><path fill="rgba(0,0,0,.25)" d="M8 1.4 14.6 8H8Z"/></svg></span>0<span class="catalog-header__plus">+</span></span>
+    <span class="catalog-header__bell"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M6 9a6 6 0 0 1 12 0c0 3.2.7 4.8 1.6 5.9.4.5 0 1.3-.6 1.3H5c-.7 0-1-.8-.6-1.3C5.3 13.8 6 12.2 6 9Z"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M10 19.2a2.3 2.3 0 0 0 4 0"/></svg><span class="catalog-header__dot"></span></span>
+    <span class="catalog-header__icon"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="m10 2 1.8 4.7L16.5 8.5l-4.7 1.8L10 15l-1.8-4.7L3.5 8.5l4.7-1.8z"/></svg></span>
+    <span class="catalog-header__avatar"></span>
+  </div>
+</header>
+<main class="middle-layer-page"><div class="middle-layer">
+  <!--
+    Шапка листа — телефонная. У платформы страница игры открывается ЛИСТОМ
+    поверх каталога: скруглённый верх, «‹ Назад» слева, логотип по центру и
+    ✕ в углу; шапки каталога с поиском на ней нет. На компьютере лист тоже
+    модальный, но там шапка каталога остаётся, поэтому этот блок показывает
+    только телефонная раскладка.
+  -->
+  <div class="sheet-head">
+    <a class="sheet-head__back" href="../../../index.html">‹ Back</a>
+    <span class="sheet-head__logo"><span class="catalog-header__logo-ya" aria-hidden="true">Я</span>
+    <span class="catalog-header__logo-pad" aria-hidden="true"><svg width="34" height="24" viewBox="0 0 34 24" aria-hidden="true"><path fill="currentColor" d="M10 4h14a9 9 0 0 1 8.9 7.6l.6 3.9a4.5 4.5 0 0 1-7.3 3.9L23.5 16.5h-13L7.8 19.4a4.5 4.5 0 0 1-7.3-3.9l.6-3.9A9 9 0 0 1 10 4Z"/><path fill="#4a2f7a" d="M7.6 8.6h2.2v2.3H12v2.2H9.8v2.3H7.6v-2.3H5.4v-2.2h2.2z"/><circle cx="24.6" cy="10.4" r="1.7" fill="#4a2f7a"/><circle cx="27.6" cy="13.6" r="1.7" fill="#4a2f7a"/></svg></span>
+    <span class="catalog-header__logo-word">Games</span></span>
+    <a class="sheet-head__close" href="../../../index.html" aria-label="Back">✕</a>
+  </div>
+  <a class="middle-layer__back" href="../../../index.html">← Back</a>
+
+  <section class="middle-layer__preview">
+    <div class="middle-layer__media"><span class="middle-layer__blur" style="background-image:url('../../../media/fosin/screens/01-fight.jpg')"></span><img src="../../../media/fosin/screens/01-fight.jpg" alt="Fosin"></div>
+    <div class="middle-layer__scrim"></div>
+    <div class="middle-layer__info"><div class="middle-layer__card">
+      <img class="middle-layer__icon" src="../../../media/fosin/icon-512x512.png" alt="Fosin">
+      <div class="middle-layer__body">
+        <h1 class="middle-layer__title">Fosin<span class="age-tag age-tag_inline age-tag_orange">12+</span></h1>
+        <div class="middle-layer__short">A card race to the ocean floor: dive deeper and prank your rivals</div>
+        <div class="middle-layer__ratings">
+          <span class="game-quality-score"><span class="game-quality-score__value">63</span><span class="game-quality-score__text">Yandex Games rating</span></span>
+          <span class="game-rating-description"><svg class="game-rating-description__star" viewBox="0 0 12 12" aria-hidden="true"><path fill="#ffce3d" d="M6 .8l1.6 3.3 3.6.5-2.6 2.5.6 3.6L6 9l-3.2 1.7.6-3.6L.8 4.6l3.6-.5z"/></svg><span class="game-rating-description__rating">4.3</span><span class="game-rating-description__text">Players rating</span></span>
+          <span class="age-tag age-tag_orange">12+</span>
+        </div>
+        <div class="middle-layer__meta"><span class="category"><svg class="category__icon" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z" opacity=".85"/></svg>Board</span><span class="middle-layer__separator"></span><span class="category"><svg class="category__icon" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z" opacity=".85"/></svg>Two players</span><span class="middle-layer__separator"></span><span class="middle-layer__developer">fosemberg</span></div>
+        <a class="btn-play" href="../../../play/fosin/index.html">▶ Play now</a>
+      </div>
+    </div></div>
+  </section>
+
+  <div class="ml-sections">
+    <div class="ml-main">
+      <section class="panel panel_shots"><h2>Screenshots</h2><div class="shots shots_portrait"><img src="../../../media/fosin/screens/01-fight.jpg" alt="Fosin" loading="lazy"><img src="../../../media/fosin/screens/02-dive.jpg" alt="Fosin" loading="lazy"><img src="../../../media/fosin/screens/03-profession.jpg" alt="Fosin" loading="lazy"><img src="../../../media/fosin/screens/04-setup.jpg" alt="Fosin" loading="lazy"></div></section>
+      <section class="panel"><h2>About game</h2><p>The world has flooded, and divers race to −1000 m. Whoever breaks through the bottom first wins… if they beat the Bottom Boss knocking from below.</p><p>What&#39;s inside:
+• a sonar row instead of a blind deck: three face-down cards whose backs hint at the danger, and you choose where to ping;
+• Locals with character — a crab housing committee, a squid from accounting, an anglerfish life coach — and Hazards at every step;
+• roles, mutations, companions and gear that comes in sets;
+• rope contracts: a rival helps you in a fight on fair terms, and once per game you can cut the rope;
+• Pranks to throw at a neighbour at the worst possible moment;
+• a new Current every round changes the rules;
+• bots with three personalities and two-player games by a link or a QR code;
+• a 3D sea floor and a 2D &quot;sonar console&quot; mode for weaker phones.</p></section>
+      <section class="panel"><h2>How to play</h2><p>A turn is a dive. First gear up: put on gear, play a mutation, a companion or a Prank. Then ping one of the three sonar cards — the marks on its back hint at how scary it is.</p><p>Met a Local? Fight: your Power against its Threat. Call a buddy on a contract, hire a Day Diver or fight alone while the neighbours throw cards in. Lose, and you toss bait or panic — or your catch net tears.</p><p>After a win, decide: go deeper (the Threat grows, but so does the loot) or surface with what you have. You can sink no more than one depth per turn.</p><p>The Bottom Boss waits at −1000 m: three trials, win two and the bottom is broken. Beginners get a tutorial with instructor Borya in the main menu.</p></section>
+    </div>
+    <aside class="ml-side">
+      <section class="panel">
+        <h2>Game info</h2>
+        <div class="features">
+          <div class="features__item"><span class="features__name">Age rating</span><span class="features__value">12+</span></div>
+          <div class="features__item"><span class="features__name">Platforms</span><span class="features__value">Desktop, Mobile</span></div>
+          <div class="features__item"><span class="features__name">Orientation</span><span class="features__value">Portrait</span></div>
+          <div class="features__item"><span class="features__name">Languages</span><span class="features__value">RU, EN</span></div>
+          <div class="features__item"><span class="features__name">Cloud saves</span><span class="features__value">No</span></div>
+          <div class="features__item"><span class="features__name">Developer</span><span class="features__value">fosemberg</span></div>
+          <div class="features__item"><span class="features__name">Game address</span><span class="features__value"><a href="https://fosemberg.github.io/fosin-pages/" rel="noopener" target="_blank">fosemberg.github.io</a></span></div>
+          <div class="features__item"><span class="features__name">Repository</span><span class="features__value">fosin</span></div>
+        </div>
+      </section>
+      <section class="panel">
+        <h2>Tags</h2>
+        <div class="tags"><span class="tag">cards</span><span class="tag">board game</span><span class="tag">turn-based</span><span class="tag">humor</span><span class="tag">vs bot</span><span class="tag">two players</span><span class="tag">offline</span></div>
+      </section>
+    </aside>
+  </div>
+
+  <section class="similar">
+    <h2 class="similar__title">More games by this developer</h2>
+    <div class="similar__grid"><a class="game-card" href="../../../app/fosord/index.html">
+  <div class="game-card__graphic">
+    <img class="game-card__cover" src="../../../media/fosord/cover-800x470.png" alt="FosOrd" loading="lazy">
+    <img class="game-card__tile" src="../../../media/fosord/icon-512x512.png" alt="FosOrd" loading="lazy">
+    <span class="game-badges__sticky-badge game-card__hide-on-hover" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M13.5 2 5 13.4h5.2L9.6 22 19 10.4h-5.4z"/></svg></span>
+    <span class="game-quality-score game-badges__game-quality-badge game-card__hide-on-hover"><span class="game-quality-score__value game-quality-score__value_high game-quality-score__value_transparent">71</span></span>
+    <span class="game-card__info" aria-hidden="true">i</span>
+    <span class="game-card__title-on-card"><span class="game-card__title">FosOrd</span></span>
+  </div>
+  <div class="game-card__description">
+    <span class="game-card__title">FosOrd</span>
+  </div>
+</a>
+<a class="game-card" href="../../../app/fosace/index.html">
+  <div class="game-card__graphic">
+    <img class="game-card__cover" src="../../../media/fosace/cover-800x470.png" alt="FosAce" loading="lazy">
+    <img class="game-card__tile" src="../../../media/fosace/icon-512x512.png" alt="FosAce" loading="lazy">
+    <span class="game-badges__sticky-badge game-card__hide-on-hover" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M13.5 2 5 13.4h5.2L9.6 22 19 10.4h-5.4z"/></svg></span>
+    <span class="game-quality-score game-badges__game-quality-badge game-card__hide-on-hover"><span class="game-quality-score__value game-quality-score__value_transparent">64</span></span>
+    <span class="game-card__info" aria-hidden="true">i</span>
+    <span class="game-card__title-on-card"><span class="game-card__title">FosAce</span></span>
+  </div>
+  <div class="game-card__description">
+    <span class="game-card__title">FosAce</span>
+  </div>
+</a>
+<a class="game-card" href="../../../app/fosain/index.html">
+  <div class="game-card__graphic">
+    <img class="game-card__cover" src="../../../media/fosain/cover-800x470.png" alt="Fosain" loading="lazy">
+    <img class="game-card__tile" src="../../../media/fosain/icon-512x512.png" alt="Fosain" loading="lazy">
+    <span class="game-badges__sticky-badge game-card__hide-on-hover" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M13.5 2 5 13.4h5.2L9.6 22 19 10.4h-5.4z"/></svg></span>
+    <span class="game-quality-score game-badges__game-quality-badge game-card__hide-on-hover"><span class="game-quality-score__value game-quality-score__value_transparent">58</span></span>
+    <span class="game-card__info" aria-hidden="true">i</span>
+    <span class="game-card__title-on-card"><span class="game-card__title">Fosain</span></span>
+  </div>
+  <div class="game-card__description">
+    <span class="game-card__title">Fosain</span>
+  </div>
+</a>
+<a class="game-card" href="../../../app/fosmos/index.html">
+  <div class="game-card__graphic">
+    <img class="game-card__cover" src="../../../media/fosmos/cover-800x470.png" alt="Fosmos" loading="lazy">
+    <img class="game-card__tile" src="../../../media/fosmos/icon-512x512.png" alt="Fosmos" loading="lazy">
+    <span class="game-badges__sticky-badge game-card__hide-on-hover" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M13.5 2 5 13.4h5.2L9.6 22 19 10.4h-5.4z"/></svg></span>
+    <span class="game-quality-score game-badges__game-quality-badge game-card__hide-on-hover"><span class="game-quality-score__value game-quality-score__value_transparent">66</span></span>
+    <span class="game-card__info" aria-hidden="true">i</span>
+    <span class="game-card__title-on-card"><span class="game-card__title">Fosmos</span></span>
+  </div>
+  <div class="game-card__description">
+    <span class="game-card__title">Fosmos</span>
+  </div>
+</a>
+<a class="game-card" href="../../../app/fosoba/index.html">
+  <div class="game-card__graphic">
+    <img class="game-card__cover" src="../../../media/fosoba/cover-800x470.png" alt="Fosoba" loading="lazy">
+    <img class="game-card__tile" src="../../../media/fosoba/icon-512x512.png" alt="Fosoba" loading="lazy">
+    <span class="game-badges__sticky-badge game-card__hide-on-hover" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M13.5 2 5 13.4h5.2L9.6 22 19 10.4h-5.4z"/></svg></span>
+    <span class="game-quality-score game-badges__game-quality-badge game-card__hide-on-hover"><span class="game-quality-score__value game-quality-score__value_transparent">61</span></span>
+    <span class="game-card__info" aria-hidden="true">i</span>
+    <span class="game-card__title-on-card"><span class="game-card__title">Fosoba</span></span>
+  </div>
+  <div class="game-card__description">
+    <span class="game-card__title">Fosoba</span>
+  </div>
+</a>
+<a class="game-card" href="../../../app/fosombat/index.html">
+  <div class="game-card__graphic">
+    <img class="game-card__cover" src="../../../media/fosombat/cover-800x470.png" alt="Fosombat" loading="lazy">
+    <img class="game-card__tile" src="../../../media/fosombat/icon-512x512.png" alt="Fosombat" loading="lazy">
+    <span class="game-badges__sticky-badge game-card__hide-on-hover" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M13.5 2 5 13.4h5.2L9.6 22 19 10.4h-5.4z"/></svg></span>
+    <span class="game-quality-score game-badges__game-quality-badge game-card__hide-on-hover"><span class="game-quality-score__value game-quality-score__value_transparent">69</span></span>
+    <span class="game-card__info" aria-hidden="true">i</span>
+    <span class="game-card__title-on-card"><span class="game-card__title">Fosombat</span></span>
+  </div>
+  <div class="game-card__description">
+    <span class="game-card__title">Fosombat</span>
+  </div>
+</a>
+<a class="game-card" href="../../../app/fosook/index.html">
+  <div class="game-card__graphic">
+    <img class="game-card__cover" src="../../../media/fosook/cover-800x470.png" alt="Fosook" loading="lazy">
+    <img class="game-card__tile" src="../../../media/fosook/icon-512x512.png" alt="Fosook" loading="lazy">
+    <span class="game-badges__sticky-badge game-card__hide-on-hover" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M13.5 2 5 13.4h5.2L9.6 22 19 10.4h-5.4z"/></svg></span>
+    <span class="game-quality-score game-badges__game-quality-badge game-card__hide-on-hover"><span class="game-quality-score__value game-quality-score__value_transparent">62</span></span>
+    <span class="game-card__info" aria-hidden="true">i</span>
+    <span class="game-card__title-on-card"><span class="game-card__title">Fosook</span></span>
+  </div>
+  <div class="game-card__description">
+    <span class="game-card__title">Fosook</span>
+  </div>
+</a>
+<a class="game-card" href="../../../app/fosrpg/index.html">
+  <div class="game-card__graphic">
+    <img class="game-card__cover" src="../../../media/fosrpg/cover-800x470.png" alt="FosRPG" loading="lazy">
+    <img class="game-card__tile" src="../../../media/fosrpg/icon-512x512.png" alt="FosRPG" loading="lazy">
+    <span class="game-badges__sticky-badge game-card__hide-on-hover" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M13.5 2 5 13.4h5.2L9.6 22 19 10.4h-5.4z"/></svg></span>
+    <span class="game-quality-score game-badges__game-quality-badge game-card__hide-on-hover"><span class="game-quality-score__value game-quality-score__value_transparent">67</span></span>
+    <span class="game-card__info" aria-hidden="true">i</span>
+    <span class="game-card__title-on-card"><span class="game-card__title">FosRPG</span></span>
+  </div>
+  <div class="game-card__description">
+    <span class="game-card__title">FosRPG</span>
+  </div>
+</a></div>
+  </section>
+</div></main>
+<footer class="footer"><div class="shell"><div class="footer__inner">
+    <div class="footer__links">
+      <a href="https://yandex.ru/legal/games_termsofuse/" rel="noopener">User agreement</a>
+      <a href="https://yandex.ru/legal/confidential/" rel="noopener">Privacy policy</a>
+      <a href="https://yandex.ru/support/games/" rel="noopener">Support</a>
+    </div>
+    <span class="preview-bar__spacer"></span>
+    <div class="footer__note">fosemberg&#39;s games on Yandex Games. This is how these games would look in the Yandex Games catalogue. The layout reproduces the real platform pages, the data comes from the console drafts in the yandex-games-releases repository. The Play button opens each game where it is actually published.</div>
+    <div class="footer__legal">
+      © 2026 fosemberg. The games, their source code, artwork, texts and audio belong to the author. Copying, distributing, modifying or reusing them without written permission is not allowed. The catalogue design belongs to Yandex and is reproduced here only as a mock-up.
+    </div>
+  </div></div></footer>
+</div><nav class="tabbar" aria-label="Yandex Games">
+  <a class="tabbar__item tabbar__item_active" href="../../../index.html"><span class="tabbar__icon"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11.3 3.3a1 1 0 0 1 1.4 0l8 7.4a1 1 0 0 1-.7 1.8H19v7.2a1 1 0 0 1-1 1h-3.6v-5.3H9.6V20.7H6a1 1 0 0 1-1-1v-7.2H4a1 1 0 0 1-.7-1.8Z"/></svg></span><span class="tabbar__label">All games</span></a>
+  <span class="tabbar__item tabbar__item_off"><span class="tabbar__icon"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M14.8 4.5a5 5 0 1 0-4.2 8.4l-.1.1-5.8 5.8v2.2h2.2l.9-.9v-1.7h1.7l1-1v-1.7h1.7l1.1-1.1a5 5 0 0 0 1.5-10.1Z"/><circle cx="16.1" cy="8" r="1.4" fill="currentColor"/></svg></span><span class="tabbar__label">Shop</span></span>
+  <span class="tabbar__item tabbar__item_off"><span class="tabbar__icon"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6" fill="currentColor"/><path fill="currentColor" d="M4.6 20c0-3.8 3.3-6.2 7.4-6.2s7.4 2.4 7.4 6.2Z"/></svg></span><span class="tabbar__label">Profile</span></span>
+</nav></div>
+<script src="../../../assets/preview.js" defer></script>
+</body>
+</html>
